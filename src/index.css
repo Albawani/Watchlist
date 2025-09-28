@@ -1,0 +1,90 @@
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    color: rgba(255,255,255,.87);
+    background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Body nicht zentrieren, sonst schrumpft das Grid */
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+/* Suche */
+.search-box {
+    position: absolute;
+    top: 1rem;
+    right: 7rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+.search-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+}
+.search-result {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+/* GRID – breitere, responsive Spalten + Zentrierung */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    max-width: 1200px;
+    margin: 5rem auto 24px; /* Platz für Suche + zentriert */
+}
+
+/* Horizontale, vollbreite Detailkarte (optional weiterhin nutzbar) */
+.movie-card {
+    display: flex;
+    flex-direction: column;  /* stack title on top of poster */
+    align-items: center;
+    background: #1c1c1c;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    padding: 0.5rem;
+    width: 200px;
+    aspect-ratio: 2 / 3;
+}
+
+.movie-card .poster {
+    width: 150px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.movie-card .title {
+    width: 120px;                     /* fixed width */
+    font-size: 0.9rem;
+    text-align: center;
+    display: -webkit-box;             /* needed for line-clamp */
+    -webkit-line-clamp: 2;            /* show 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;          /* adds … if text is longer */
+    line-height: 1.2;
+    max-height: calc(1.2em * 2);      /* ensure height fits two lines */
+    margin: 0 0 0.5rem 0;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .movie-card { flex-direction: column; align-items: center; text-align: center; }
+    .movie-card .poster { width: 60%; }
+    .movie-card .info { width: 100%; }
+}
